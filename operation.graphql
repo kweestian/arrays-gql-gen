@@ -1,0 +1,22 @@
+query findUserOrUsers($userIds: [ID], $customFields: [CustomFieldFilterInput]) {
+  users(ids: $userIds, customFields: $customFields) {
+    ...UserFields
+  }
+}
+
+query findUsersString {
+  users(ids: 123, customFields: { value: "123", id: 123 }) {
+    ...UserFields
+  }
+}
+
+query findUsersArray {
+  users(ids: [123], customFields: [{ value: "123", id: 123 }]) {
+    ...UserFields
+  }
+}
+
+fragment UserFields on User {
+  id
+  username
+}

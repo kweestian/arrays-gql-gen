@@ -1,0 +1,29 @@
+schema {
+  query: Query
+}
+
+input CustomFieldFilterInput {
+  id: ID
+  value: String
+}
+
+type Query {
+  me: User!
+  users(ids: [ID], customFields: [CustomFieldFilterInput]): [User]
+}
+
+type CustomField {
+  id: ID
+  value: String
+}
+
+interface Node {
+  id: ID!
+}
+
+type User implements Node {
+  id: ID!
+  username: String!
+  email: String!
+  customfields: [CustomField]
+}
